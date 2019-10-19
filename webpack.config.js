@@ -85,10 +85,5 @@ module.exports = {
         },
       },
     },
-  },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all', // this will bundle node modules into one chunk only [vendors]
-  //   }
-  // }
+  }
 }
