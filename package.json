@@ -10,6 +10,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhishekthakurak/remarques"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "react": "^16.10.2",

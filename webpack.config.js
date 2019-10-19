@@ -46,7 +46,10 @@ const urlLoader = {
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: '[name].bundle.js',
+        // filename: '[name].[hash].js', // 'hash' will create same chunk hash
+                                      // for every chunk and hence if code of any chunk changes
+                                      // all cache will burst
+        filename: '[name].[chunkhash].js', // This will create hash accroding to entry points
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -60,5 +63,27 @@ module.exports = {
       title: 'Home',
       template: './src/index.html'
     })
-  ]
+  ],
+
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 30000,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
+  }
 }
