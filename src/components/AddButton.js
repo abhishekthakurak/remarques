@@ -1,6 +1,5 @@
+import React from 'react'
 import { addNote, buttonWrapper } from '../styles/NotesStyle'
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 
 export default function SingleNote (props) {
   return (

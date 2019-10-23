@@ -1,3 +1,4 @@
+import React from 'react'
 import { useReducer, useEffect } from 'react'
 import SingleNote from './components/SingleNote'
 import { mainWrapper, noteList, textAreaWrapper, maximizeTextArea, blurMainWrapper, closeFullView } from './styles/NotesStyle'
@@ -7,10 +8,6 @@ import { getNotes, saveNotesToLocalStorage } from './service/storageService'
 import { getCreatedAt } from './helpers/notesHelper'
 import TextArea from './components/TextArea'
 import remove from './images/remove.svg'
-
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
-
 const initialState = { notes: getNotes(), searchText: '', searchFocus: '', fullViewIndex: null }
 
 function reducer (state, action) {
@@ -31,7 +28,6 @@ function reducer (state, action) {
 }
 
 export default function App () {
-  console.log('0000')
   const [state, dispatch] = useReducer(reducer, initialState)
   const { notes, searchText, searchFocus, fullViewIndex } = state
 
