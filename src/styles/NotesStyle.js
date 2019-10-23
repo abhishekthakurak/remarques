@@ -1,5 +1,3 @@
-
-/** @jsx jsx */
 import { css } from '@emotion/core'
 export const blurMainWrapper = css`{
     opacity: 0.3;

@@ -1,7 +1,6 @@
+import React from 'react'
 import { searchBar, input, searchRemove, searchBarWrapper } from '../styles/NotesStyle'
 import remove from '../images/remove.svg'
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 
 export default function SingleNote (props) {
   return (

@@ -1,12 +1,13 @@
+import React from 'react'
 import {
-  textAreaStyle, text } from '../styles/NotesStyle'
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+  textAreaStyle,
+  text
+} from '../styles/NotesStyle'
 
 export default function TextArea (props) {
   return (
     <textarea placeholder='Enter Text...'
-      css={css`{${text} ${textAreaStyle} ${props.textAreaStyle}}`}
+      css={[text, textAreaStyle, props.textAreaStyle]}
       name='text'
       value={props.value}
       onBlur={props.onBlur}

@@ -15,7 +15,8 @@
     "url": "https://github.com/abhishekthakurak/remarques"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.10",
+    "@emotion/babel-preset-css-prop": "^10.0.5",
+    "@emotion/core": "^10.0.5",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
   },

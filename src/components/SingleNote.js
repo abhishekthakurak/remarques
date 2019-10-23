@@ -1,11 +1,10 @@
+import React from 'react'
 import deleteIcon from '../images/delete.svg'
 import pinImage from '../images/pin.svg'
 import expandImage from '../images/expand.svg'
 import { minimizeTextArea,
   note, pinned, expand, date, pin, remove, title, margin, paper, swing, tooltip } from '../styles/NotesStyle'
 import { useRef, useEffect } from 'react'
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
 import TextArea from './TextArea'
 
 export default function SingleNote (props) {
@@ -16,7 +15,7 @@ export default function SingleNote (props) {
   }, [])
 
   return (
-    <div css={css`${note} ${props.note.isPin && pinned}`}>
+    <div css={[note, props.note.isPin && pinned]}>
       <form css={paper} method='get' action=''>
         <div css={margin}>Title: <input
           ref={noteRef}
@@ -29,7 +28,7 @@ export default function SingleNote (props) {
         <img css={pin} alt='pin' src={pinImage} onClick={() => props.pinNote(props.id)} />
         <img css={expand} alt='pin' src={expandImage} onClick={() => props.setFullView(props.id)} />
 
-        <div css={css`${tooltip} ${swing}`} data-title='Created On' >
+        <div css={[tooltip, swing]} data-title='Created On' >
           <div css={date}>{props.note.createdOn}</div>
         </div>
 
