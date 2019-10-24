@@ -45,13 +45,16 @@ const urlLoader = {
   ],
 }
 module.exports = {
+    mode: 'development',
     entry: './src/index.js',
     output: {
-        // filename: '[name].[hash].js', // 'hash' will create same chunk hash
-                                      // for every chunk and hence if code of any chunk changes
-                                      // all cache will burst
         filename: '[name].[chunkhash].js', // This will create hash accroding to entry points
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+      contentBase: './dist',
     },
     module: {
         rules: [{
