@@ -1,6 +1,7 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack')
 const babelLoader = {
   test: /\.m?js$/,
   exclude: /(node_modules)/,
@@ -46,9 +47,11 @@ const urlLoader = {
 }
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+      index: ['./src/index.js']
+    },
     output: {
-        filename: '[name].[chunkhash].js', // This will create hash accroding to entry points
+        filename: '[name].[hash].js', // This will create hash accroding to entry points
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
@@ -64,9 +67,10 @@ module.exports = {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-      title: 'Home',
-      template: './src/index.html'
-    })
+        title: 'Home',
+        template: './src/index.html'
+      }),
+      new webpack.HotModuleReplacementPlugin()
   ],
 
   optimization: {
