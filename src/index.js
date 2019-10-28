@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Notes from './Notes';
+import 'src/index.css';
+import Notes from 'src/Notes';
 // import * as serviceWorker from './serviceWorker';
 if(module.hot) {
     module.hot.accept()

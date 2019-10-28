@@ -46,23 +46,23 @@ const urlLoader = {
   ],
 }
 module.exports = {
-    mode: 'development',
-    entry: {
-      index: ['./src/index.js']
-    },
-    output: {
-        filename: '[name].[hash].js', // This will create hash accroding to entry points
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-      contentBase: './dist',
-    },
-    module: {
-        rules: [{
-          oneOf: [babelLoader, cssLoader, urlLoader],
-          }]
+  mode: 'development',
+  entry: {
+    index: ['./src/index.js']
+  },
+  output: {
+    filename: '[name].[hash].js', // This will create hash accroding to entry points
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+  },
+  module: {
+    rules: [{
+      oneOf: [babelLoader, cssLoader, urlLoader],
+      }]
     },
     plugins: [
       new CleanWebpackPlugin(),
@@ -72,6 +72,20 @@ module.exports = {
       }),
       new webpack.HotModuleReplacementPlugin()
   ],
+
+  resolve: {
+    extensions: ['.js', '.json', '.css'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      images: path.resolve(__dirname, 'src/images'),
+      service: path.resolve(__dirname, 'src/service'),
+      src: path.resolve(__dirname, 'src/src'),
+      styles: path.resolve(__dirname, 'src/styles'),
+      helpers: path.resolve(__dirname, 'src/helpers'),
+      src: path.resolve(__dirname, 'src')
+    }
+  },
 
   optimization: {
     runtimeChunk: 'single',

@@ -1,4 +1,4 @@
-import { getCreatedAt } from '../helpers/notesHelper'
+import { getCreatedAt } from 'helpers/notesHelper'
 
 export function saveNotesToLocalStorage (notes) {
   window.localStorage.setItem('notes', JSON.stringify(notes))

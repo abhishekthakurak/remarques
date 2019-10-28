@@ -1,6 +1,6 @@
 import React from 'react'
-import { searchBar, input, searchRemove, searchBarWrapper } from '../styles/NotesStyle'
-import remove from '../images/remove.svg'
+import { searchBar, input, searchRemove, searchBarWrapper } from 'styles/NotesStyle'
+import remove from 'images/remove.svg'
 
 export default function SingleNote (props) {
   return (

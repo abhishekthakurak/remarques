@@ -1,13 +1,13 @@
 import React from 'react'
 import { useReducer, useEffect } from 'react'
-import SingleNote from './components/SingleNote'
-import { mainWrapper, noteList, textAreaWrapper, maximizeTextArea, blurMainWrapper, closeFullView } from './styles/NotesStyle'
-import SearchBar from './components/SearchBar'
-import AddButton from './components/AddButton'
-import { getNotes, saveNotesToLocalStorage } from './service/storageService'
-import { getCreatedAt } from './helpers/notesHelper'
-import TextArea from './components/TextArea'
-import remove from './images/remove.svg'
+import SingleNote from 'components/SingleNote'
+import { mainWrapper, noteList, textAreaWrapper, maximizeTextArea, blurMainWrapper, closeFullView } from 'styles/NotesStyle'
+import SearchBar from 'components/SearchBar'
+import AddButton from 'components/AddButton'
+import { getNotes, saveNotesToLocalStorage } from 'service/storageService'
+import { getCreatedAt } from 'helpers/notesHelper'
+import TextArea from 'components/TextArea'
+import remove from 'images/remove.svg'
 const initialState = { notes: getNotes(), searchText: '', searchFocus: '', fullViewIndex: null }
 
 function reducer (state, action) {

@@ -1,11 +1,13 @@
 import React from 'react'
-import deleteIcon from '../images/delete.svg'
-import pinImage from '../images/pin.svg'
-import expandImage from '../images/expand.svg'
-import { minimizeTextArea,
-  note, pinned, expand, date, pin, remove, title, margin, paper, swing, tooltip } from '../styles/NotesStyle'
+import deleteIcon from 'images/delete.svg'
+import pinImage from 'images/pin.svg'
+import expandImage from 'images/expand.svg'
+import {
+  minimizeTextArea,
+  note, pinned, expand, date, pin, remove, title, margin, paper, swing, tooltip
+} from 'styles/NotesStyle'
 import { useRef, useEffect } from 'react'
-import TextArea from './TextArea'
+import TextArea from 'components/TextArea'
 
 export default function SingleNote (props) {
   const noteRef = useRef(null)
