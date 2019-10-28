@@ -2,7 +2,7 @@ import React from 'react'
 import {
   textAreaStyle,
   text
-} from '../styles/NotesStyle'
+} from 'styles/NotesStyle'
 
 export default function TextArea (props) {
   return (
