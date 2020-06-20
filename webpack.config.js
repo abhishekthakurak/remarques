@@ -1,7 +1,10 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const webpack = require('webpack')
+
+const DEV = process.env.NODE_ENV !== 'production'
 const babelLoader = {
   test: /\.m?js$/,
   exclude: /(node_modules)/,
@@ -16,14 +19,6 @@ const babelLoader = {
     }
   }
 }
-
-// const fileLoader = {
-//   test: /\.(png|svg|jpg|gif)$/,
-//   use: [{
-//       loader: require.resolve('file-loader'),
-//       options:{ name: '[name].[ext]' },
-//   }]
-// }
 
 const cssLoader = {
   test: /\.css$/,
@@ -46,14 +41,14 @@ const urlLoader = {
   ],
 }
 module.exports = {
-  mode: 'development',
+  mode: DEV? 'development' : 'production',
   entry: {
     index: ['./src/index.js']
   },
   output: {
-    filename: '[name].[hash].js', // This will create hash accroding to entry points
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    filename: DEV ? 'js/[name].js' : 'js/[name].[hash:8].js',
+    chunkFilename: DEV ? 'js/[name].js' : 'js/[name].[hash:8].js',
+    path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -64,8 +59,9 @@ module.exports = {
       oneOf: [babelLoader, cssLoader, urlLoader],
       }]
     },
-    plugins: [
+    plugins: [   
       new CleanWebpackPlugin(),
+      new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({
         title: 'Home',
         template: './src/index.html'
@@ -88,6 +84,10 @@ module.exports = {
   },
 
   optimization: {
+    namedModules: true,
+    namedChunks: true,
+    moduleIds: 'hashed',
+    noEmitOnErrors: true,
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
@@ -96,16 +96,16 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module) {
+          name (module) {
             // get the name. E.g. node_modules/packageName/not/this/part.js
             // or node_modules/packageName
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
 
             // npm package names are URL-safe, but some servers don't like @ symbols
-            return `npm.${packageName.replace('@', '')}`;
-          },
-        },
-      },
-    },
+            return `${packageName.replace('@', '')}`
+          }
+        }
+      }
+    }
   }
 }
